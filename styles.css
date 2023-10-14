@@ -47,3 +47,24 @@ p {
   width: 5rem;
   margin-left: 1rem;
 }
+
+@media only screen and (min-width: 600px) {
+  .blockButton {
+    width: 9vw;
+    height: 9vw;
+  }
+}
+
+@media only screen and (min-width: 800px) {
+  .blockButton {
+    width: 8vw;
+    height: 8vw;
+  }
+}
+
+@media only screen and (min-width: 900px) {
+  .blockButton {
+    width: 5vw;
+    height: 5vw;
+  }
+}
