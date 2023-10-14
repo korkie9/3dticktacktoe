@@ -34,18 +34,17 @@ const layerReset = [
   ],
 ];
 
-let playerTurn = 1;
+let playerTurn = "X";
 
 const setPlayer = (player) => {
-  newXorO = player === 1 ? "X" : "0";
-  playerTurn = player;
-  $("#playerPrompt").text(`${newXorO} to Play`);
+  playerTurn = playerTurn === "X" ? "0" : "X";
+  $("#playerPrompt").text(`${playerTurn} to Play`);
 };
 
 const reset = () => {
   layers.forEach((layer, layerIndex) => {
     layer.forEach((row, rowIndex) => {
-      row.map((column, columnIndex) => {
+      row.forEach((column, columnIndex) => {
         layers[layerIndex][rowIndex][columnIndex] = ".";
       });
     });
@@ -55,30 +54,45 @@ const reset = () => {
   console.log("reset");
 };
 
+const check3DDiagonals = (symbol) => {
+  //TODO: there's probably a for loop here somewhere
+  if (
+    layers[0][0][0] === layers[1][1][1] &&
+    layers[1][1][1] === layers[2][2][2] &&
+    layers[0][0][0] === symbol
+  )
+    console.log("3d diag");
+  if (
+    layers[0][0][2] === layers[1][1][1] &&
+    layers[1][1][1] === layers[2][2][0] &&
+    layers[0][0][2] === symbol
+  )
+    console.log("3d diag");
+  if (
+    layers[0][2][0] === layers[1][1][1] &&
+    layers[1][1][1] === layers[2][0][2] &&
+    layers[0][2][0] === symbol
+  )
+    console.log("3d diag");
+  if (
+    layers[0][2][2] === layers[1][1][1] &&
+    layers[1][1][1] === layers[2][0][0] &&
+    layers[0][2][2] === symbol
+  )
+    console.log("3d diagonal");
+};
+
 const checkHeight = (symbol) => {
-  const symbolToCheck = `${symbol}${symbol}${symbol}`;
-//   let measuringSymbol = ''
-//   for (let layerIndex = 0; layerIndex < 3; layerIndex++) {
-//     for (let x = 0; x < 3; x++) {
-//       const squareValue = layers[layerIndex][x][x];
-
-//     }
-//     let measuringSymbol = ''
-//   }
-
-//TODO: Fix this
-if(layers[0][0][0] == layers[[1][0][0]] === layers[2][0][0]) console.log("matches")
-if(layers[0][0][1] == layers[[1][0][1]] === layers[2][0][1]) console.log("matches")
-if(layers[0][0][2] == layers[[1][0][2]] === layers[2][0][2]) console.log("matches")
-
-if(layers[0][0][1] == layers[[1][0][1]] === layers[2][0][1]) console.log("matches")
-if(layers[0][1][0] == layers[[1][1][0]] === layers[2][1][0]) console.log("matches")
-if(layers[0][2][0] == layers[[1][2][0]] === layers[2][2][0]) console.log("matches")
-
-if(layers[0][0][0] == layers[[1][0][0]] === layers[2][0][0]) console.log("matches")
-if(layers[0][1][0] == layers[[1][1][0]] === layers[2][1][0]) console.log("matches")
-if(layers[0][2][0] == layers[[1][2][0]] === layers[2][2][0]) console.log("matches")
-
+  for (let x = 0; x < 3; x++) {
+    for (let y = 0; y < 3; y++) {
+      if (
+        layers[0][x][y] === layers[1][x][y] &&
+        layers[1][x][y] === layers[2][x][y] &&
+        layers[0][x][y] === symbol
+      )
+        console.log("matches");
+    }
+  }
 };
 
 const checkDiagonals = (symbol) => {
@@ -118,10 +132,11 @@ const checkRows = (symbol) => {
 };
 
 const checkWinner = () => {
-  const symbol = playerTurn === 1 ? "X" : "0";
-  checkRows(symbol);
-  checkColumns(symbol);
-  checkDiagonals(symbol);
+  checkRows(playerTurn);
+  checkColumns(playerTurn);
+  checkDiagonals(playerTurn);
+  checkHeight(playerTurn);
+  check3DDiagonals(playerTurn);
 };
 
 const selectTile = (layerIndex, rowIndex, columnIndex, blockId) => {
@@ -129,17 +144,16 @@ const selectTile = (layerIndex, rowIndex, columnIndex, blockId) => {
   //If there is a x or o, do nothing
   if (block === "X" || block === "0")
     return alert("There is already a character on this square");
-  const XorO = playerTurn == 1 ? "X" : "0";
-  $("#playerPrompt").text(`${XorO} to Play`);
   //append x or o img
   $(blockId).append(`<img src="./assets/${
-    playerTurn === 1 ? "ex" : "o"
+    playerTurn === "X" ? "ex" : "o"
   }.png" alt="x" width='80%' height='80%' id="xoimg">
 `);
   //this order is important
-  layers[layerIndex][rowIndex][columnIndex] = XorO;
+  layers[layerIndex][rowIndex][columnIndex] = playerTurn;
   checkWinner();
-  playerTurn = playerTurn == 1 ? 2 : 1;
+  playerTurn = playerTurn == "X" ? "0" : "X";
+  $("#playerPrompt").text(`${playerTurn} to Play`);
 };
 
 $(document).ready(function () {
