@@ -13,20 +13,15 @@ tr th {
   margin-bottom: 1rem;
 }
 
-.layers {
+body {
+  background-color: gray;
 }
 
-body {
-  background-color: black;
+.main-container {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-}
-
-p {
-  color: bisque;
-  padding-left: 1rem;
 }
 
 .actionElements {
@@ -40,12 +35,37 @@ p {
 .resetBtn {
   all: unset;
   text-align: center;
-  background-color: rgb(130, 79, 75);
-  border-style: solid;
-  border-color: beige;
-  border-width: 1px;
-  width: 5rem;
-  margin-left: 1rem;
+  font-size: 2.5rem;
+  width: 100%;
+  background-color: crimson;
+  margin: 2px;
+}
+
+.resetBtn:hover {
+  box-shadow: 0 0 3px black;
+  transition: 0.5s;
+}
+
+.playerTurn {
+  text-align: center;
+  font-size: 2.5rem;
+  width: 100%;
+}
+
+.howtolink {
+  display: block;
+  text-decoration: none;
+  text-align: center;
+  font-size: 2.5rem;
+  width: 100%;
+  text-align: center;
+  margin: 2px;
+  background-color: aqua;
+}
+
+.howtolink:hover {
+  box-shadow: 0 0 3px black;
+  transition: 0.5s;
 }
 
 @media only screen and (min-width: 600px) {

@@ -7,6 +7,7 @@ const reset = () => {
     });
   });
   setPlayer('X');
+  $('.drawer').drawer('close');
   $("img").remove("#xoimg");
   console.log("reset");
 };

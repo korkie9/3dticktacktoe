@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3D Tick Tack Toe</title>
+  </head>
+  <body>
+    <p>
+      This version of tick tack toe can be conceptualised as a 3D redition of
+      the original game represented on a 2D plane.
+    </p>
+    <p>Each 3x3 block square can be considered a layer of a cube.</p>
+    <p>
+      Just like in regular tick tack toe, getting three symbols in a row will
+      win you the game, be it vertically, horizonally, diagonally across either
+      plane.
+    </p>
+    <p>
+      Visually, this means for either plane if one player gets 3 in a row on one
+      layer, just like in regular tick tack toe, that player wins.
+    </p>
+    <p>
+      Also if they get 3 in a row across the cube, they win, be it from one
+      corner to the other ro from the "top" to the "bottom"
+    </p>
+    <p>Consider the following diagram:</p>
+    <table aria-describedby="plane 1" style="margin-bottom: 5px">
+      <tr>
+        <th>x</th>
+        <th>.</th>
+        <th>.</th>
+      </tr>
+      <tr>
+        <td>.</td>
+        <td>0</td>
+        <td>.</td>
+      </tr>
+      <tr>
+        <td>.</td>
+        <td>.</td>
+        <td>.</td>
+      </tr>
+    </table>
+    <table aria-describedby="plane 2" style="margin-bottom: 5px">
+      <tr>
+        <th>x</th>
+        <th>.</th>
+        <th>.</th>
+      </tr>
+      <tr>
+        <td>.</td>
+        <td>0</td>
+        <td>.</td>
+      </tr>
+      <tr>
+        <td>.</td>
+        <td>.</td>
+        <td>.</td>
+      </tr>
+    </table>
+    <table aria-describedby="plane 3" style="margin-bottom: 5px">
+      <tr>
+        <th>x</th>
+        <th>.</th>
+        <th>.</th>
+      </tr>
+      <tr>
+        <td>.</td>
+        <td>.</td>
+        <td>.</td>
+      </tr>
+      <tr>
+        <td>.</td>
+        <td>.</td>
+        <td>.</td>
+      </tr>
+    </table>
+    <p>
+      In this game, X wins because they got 3 in a row going from top to bottom
+      on the left backside of the cube
+    </p>
+    <p>Consider also:</p>
+    <table aria-describedby="plane 1" style="margin-bottom: 5px">
+      <tr>
+        <th>X</th>
+        <th>.</th>
+        <th>.</th>
+      </tr>
+      <tr>
+        <td>.</td>
+        <td>.</td>
+        <td>.</td>
+      </tr>
+      <tr>
+        <td>.</td>
+        <td>.</td>
+        <td>.</td>
+      </tr>
+    </table>
+    <table aria-describedby="plane 2" style="margin-bottom: 5px">
+      <tr>
+        <th>.</th>
+        <th>.</th>
+        <th>.</th>
+      </tr>
+      <tr>
+        <td>.</td>
+        <td>X</td>
+        <td>.</td>
+      </tr>
+      <tr>
+        <td>.</td>
+        <td>.</td>
+        <td>0</td>
+      </tr>
+    </table>
+    <table aria-describedby="plane 3" style="margin-bottom: 5px">
+      <tr>
+        <th>.</th>
+        <th>.</th>
+        <th>.</th>
+      </tr>
+      <tr>
+        <td>.</td>
+        <td>.</td>
+        <td>0</td>
+      </tr>
+      <tr>
+        <td>.</td>
+        <td>.</td>
+        <td>X</td>
+      </tr>
+    </table>
+    <p>
+      In this game, X wins because they placed 3 in a row from one corner of the
+      cube to the other corner. Notice that a straight line can be drawn from
+      one corner of the cube, through the center to the other corner of the cube
+    </p>
+    <a href="index.html">
+        Back to Game</a>
+  </body>
+</html>
