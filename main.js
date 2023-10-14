@@ -61,25 +61,24 @@ const check3DDiagonals = (symbol) => {
     layers[1][1][1] === layers[2][2][2] &&
     layers[0][0][0] === symbol
   )
-    console.log("3d diag");
+    return true;
   if (
     layers[0][0][2] === layers[1][1][1] &&
     layers[1][1][1] === layers[2][2][0] &&
     layers[0][0][2] === symbol
   )
-    console.log("3d diag");
+    return true;
   if (
     layers[0][2][0] === layers[1][1][1] &&
     layers[1][1][1] === layers[2][0][2] &&
     layers[0][2][0] === symbol
   )
-    console.log("3d diag");
-  if (
+    return true;
+  return !!(
     layers[0][2][2] === layers[1][1][1] &&
     layers[1][1][1] === layers[2][0][0] &&
     layers[0][2][2] === symbol
-  )
-    console.log("3d diagonal");
+  );
 };
 
 const checkHeight = (symbol) => {
@@ -90,9 +89,10 @@ const checkHeight = (symbol) => {
         layers[1][x][y] === layers[2][x][y] &&
         layers[0][x][y] === symbol
       )
-        console.log("matches");
+        return true;
     }
   }
+  return false;
 };
 
 const checkDiagonals = (symbol) => {
@@ -101,13 +101,15 @@ const checkDiagonals = (symbol) => {
       layer[0][0] === layer[1][1] &&
       layer[1][1] === layer[2][2] &&
       layer[0][0] === symbol;
+    if (checkFirstDiagonal) return true;
+
     const checkSecondDiagonal =
       layer[0][2] === layer[1][1] &&
       layer[1][1] == layer[2][0] &&
       layer[0][2] === symbol;
-    if (checkFirstDiagonal) console.log("blyaaat suka naxuy");
-    if (checkSecondDiagonal) console.log("blyaaat suka naxuy");
+    if (checkSecondDiagonal) return true;
   });
+  return false;
 };
 
 const checkColumns = (symbol) => {
@@ -119,24 +121,25 @@ const checkColumns = (symbol) => {
       layer.forEach((row) => {
         matchingString += row[column];
       });
-      if (matchingString === stringToMatch) console.log("blyaaaaaaat suka");
+      if (matchingString === stringToMatch) return true;
       matchingString = "";
     }
   });
+  return false;
 };
 const checkRows = (symbol) => {
   //Check rows
   const layersString = layers.join().replace(/,/g, "").replace(/.{3}/g, "$&,");
   const threeItemsInArows = `${symbol}${symbol}${symbol}`;
-  if (layersString.includes(threeItemsInArows)) console.log("blyaaaaaaat");
+  return !!layersString.includes(threeItemsInArows);
 };
 
 const checkWinner = () => {
-  checkRows(playerTurn);
-  checkColumns(playerTurn);
-  checkDiagonals(playerTurn);
-  checkHeight(playerTurn);
-  check3DDiagonals(playerTurn);
+  if (checkRows(playerTurn)) return alert(`${playerTurn} wins`);
+  if (checkColumns(playerTurn)) return alert(`${playerTurn} wins`);
+  if (checkDiagonals(playerTurn)) return alert(`${playerTurn} wins`);
+  if (checkHeight(playerTurn)) return alert(`${playerTurn} wins`);
+  if (check3DDiagonals(playerTurn)) return alert(`${playerTurn} wins`);
 };
 
 const selectTile = (layerIndex, rowIndex, columnIndex, blockId) => {
